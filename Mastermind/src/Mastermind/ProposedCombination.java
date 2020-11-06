@@ -10,7 +10,7 @@ public class ProposedCombination extends Combination{
     }
 
     @Override
-    public String Show() {
+    public String show() {
         return code;
     }
 
@@ -29,15 +29,10 @@ public class ProposedCombination extends Combination{
     }
 
     private boolean isColorsOK(String value) {
-        boolean bol1 = false;
         for (char c : value.toCharArray()) {
-
-            for (char d : colors) {
-                if(c == d ) bol1 = true;
+                if(Color.valueOf(c) == null) return false;
             }
-            if(!bol1) return false;
-        }
-        return bol1;
+        return true;
     }
 
 }

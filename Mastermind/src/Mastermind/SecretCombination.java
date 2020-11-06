@@ -11,13 +11,13 @@ public class SecretCombination extends Combination {
         Random random = new Random();
         String value = "";
         for (int i = 0; i < MAXCOLORS; i++) {
-            value += colors[random.nextInt(colors.length)];
+            value += Color.values()[random.nextInt(MAXCOLORS)];
         }
         return value;
     }
 
     @Override
-    public String Show() {
+    public String show() {
         return "xxxx";
     }
     

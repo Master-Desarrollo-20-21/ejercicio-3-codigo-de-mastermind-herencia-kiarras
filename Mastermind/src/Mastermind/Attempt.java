@@ -10,14 +10,12 @@ public class Attempt {
         proposedCombination = new ProposedCombination();
     }
 
-
-
     public ProposedCombination getProposedCombination() {
 		return proposedCombination;
 	}
 
 	public String getAttempt() {
-		return proposedCombination.Show() + " --> "+ result[0] + " blacks and " + result[1] + " whites \n";
+		return proposedCombination.show() + " --> "+ result[0] + " blacks and " + result[1] + " whites \n";
 	}
 
 }

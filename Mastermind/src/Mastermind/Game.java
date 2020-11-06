@@ -20,7 +20,7 @@ public class Game {
             console.out(i + " attempt(s): \n xxxx \n");
             showPreviousAttempts(i);
             attempts[i] = new Attempt();
-            attempts[i].result = secretCombination.isEqual(attempts[i].getProposedCombination().Show());
+            attempts[i].result = secretCombination.isEqual(attempts[i].getProposedCombination().show());
             i++;
             if(attempts[i-1].result[0] == WINS){
                 break;
@@ -39,7 +39,5 @@ public class Game {
         for (int j = 0; j < previous; j++) {
             console.out(attempts[j].getAttempt());
         }
-
     }
-
 }
