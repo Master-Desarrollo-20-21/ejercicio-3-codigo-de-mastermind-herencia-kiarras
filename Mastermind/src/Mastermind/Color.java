@@ -22,6 +22,9 @@ public enum Color {
         }
         return null;
     }
+    public static char valueOf(int index) {
+        return values()[index].keyword;
+    }
 
     public int getKeyword() {
         return this.keyword;

@@ -11,9 +11,20 @@ public class SecretCombination extends Combination {
         Random random = new Random();
         String value = "";
         for (int i = 0; i < MAXCOLORS; i++) {
-            value += Color.values()[random.nextInt(MAXCOLORS)];
+            int a;
+            do {
+                a = random.nextInt(Color.values().length);
+            } while (isContain(a, value.toCharArray()));
+            value += Color.valueOf(a);
         }
         return value;
+    }
+
+    private boolean isContain(int value, char[] values){
+        for (int i = 0; i < values.length; i++) {
+            if(Color.valueOf(value) == values[i]) return true;
+        }
+        return false;
     }
 
     @Override
@@ -24,10 +35,10 @@ public class SecretCombination extends Combination {
 	public int[] isEqual(String proposedCombination) {
         int[] result = new int[2];
         int blacks = 0;
-        int whites = 0;
         for (int i = 0; i < code.toCharArray().length; i++) {
             if(proposedCombination.toCharArray()[i] == code.toCharArray()[i]) blacks++;
         }
+        int whites = -blacks;
         for (char j : proposedCombination.toCharArray()) {
             for (char i : code.toCharArray()) {
                 if(j == i) whites++;
