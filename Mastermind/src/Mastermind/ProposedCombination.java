@@ -3,26 +3,22 @@ package Mastermind;
 public class ProposedCombination extends Combination{
 
     final String PROPOSE = "Propose a combination: ";
-    final String WRONGLENGTH = "Wrong proposed combination length \n";
-    final String WRONGCOLORS = "Wrong colors, they must be: rbygop \n";
+    final String WRONG_LENGTH = "Wrong proposed combination length \n";
+    final String WRONG_COLORS = "Wrong colors, they must be: rbygop \n";
     public ProposedCombination() {
         code = isValid();
     }
 
-    @Override
-    public String show() {
-        return code;
-    }
 
     private String isValid() {
         Console console = new Console();
         String value = console.readString(PROPOSE);
         while (value.length() != 4) {
-            console.out(WRONGLENGTH);
+            console.out(WRONG_LENGTH);
             value = console.readString(PROPOSE);
         } 
         while (!isColorsOK(value)) {
-            console.out(WRONGCOLORS);
+            console.out(WRONG_COLORS);
             value = console.readString(PROPOSE);
         }
         return value;
@@ -35,4 +31,8 @@ public class ProposedCombination extends Combination{
         return true;
     }
 
+    @Override
+    public String show() {
+        return code;
+    }
 }

@@ -2,13 +2,13 @@ package Mastermind;
 
 public class Game {
 
-    final int MAXATTEMPS = 10;
+    final int MAX_ATTEMPS = 10;
     final int WINS = 4;
     private Attempt[] attempts;
     private SecretCombination secretCombination;
 
     public Game() {
-        attempts = new Attempt[MAXATTEMPS];
+        attempts = new Attempt[MAX_ATTEMPS];
         secretCombination = new SecretCombination();
     }
 
@@ -27,17 +27,17 @@ public class Game {
             }
         } while (i < attempts.length);
         console.out(finalResult(i-1));
-	}
-
-    private String finalResult(int i) {
-        if(attempts[i].result[0] == 4) return "You've won!!! ;-) \n";
-        return "You've lost!!! :-( \n";
     }
-
+    
     private void showPreviousAttempts(int previous) {
         Console console = new Console();
         for (int j = 0; j < previous; j++) {
             console.out(attempts[j].getAttempt());
         }
+    }
+
+    private String finalResult(int i) {
+        if(attempts[i].result[0] == 4) return "You've won!!! ;-) \n";
+        return "You've lost!!! :-( \n";
     }
 }

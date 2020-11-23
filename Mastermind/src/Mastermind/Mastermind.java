@@ -14,7 +14,8 @@ public class Mastermind {
     
     private boolean isResumed() {
         Console console = new Console();
-        if(console.readStringOK("Resume? (y/n):")){
+        console.out("Resume? (y/n):");
+        if(console.inChar() == 'y'){
             this.game = new Game();
             return true;
         }

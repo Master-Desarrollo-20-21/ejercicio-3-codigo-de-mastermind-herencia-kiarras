@@ -1,0 +1,69 @@
+@startuml Mastermind
+class Mastermind{
+  + start()
+  - isResumed()
+}
+Mastermind *--> Game
+class Game{
+    ~ MAX_ATTEMPS : int
+    - WINS
+    + Attempts : Attempt[]
+    + play()
+    - showPreviousAttempts()
+    - finalResult() :String
+}
+Game *--> "0..10" Attempt
+Game *--> SecretCombination
+
+class Attempt{
+    - Result : int[]
+    + getProposedCombination()
+    + getAttempt() : String
+}
+Attempt *--> ProposedCombination
+Attempt --> SecretCombination
+
+abstract class Combination{
+    ~ MAX_COLORS : int
+    + Code : String
+    + CharCode : Char[]
+    {abstract} + show()
+}
+Combination *--> "4" Color
+enum Color{
+    RED     ("r")
+    YELLOW  ("y")
+    BLUE    ("b")
+    GREEN   ("g")
+    PURPLE  ("p")
+    ORANGE  ("o")
+    + valueOf(char) : Color
+    + valueOf(int) : char
+    + getKeyword() : int
+}
+Combination <|-- SecretCombination
+Combination <|-- ProposedCombination
+Class SecretCombination{
+    - setRamdomCombination()
+    - isContain(int, char[])
+    + isEquals(ProposedCombination)
+}
+Class ProposedCombination{
+    ~ PROPOSE
+    ~ WRONG_LENGTH
+    ~ WRONG_COLORS
+    - isValid() : String
+    - isColorOK(String) : boolean
+}
+
+package IO{
+    Class Console{
+        + input()
+        + out()
+    }
+}
+Attempt ...> Console
+Game ...> Console
+Mastermind ...> Console
+ProposedCombination ...> Console
+@enduml

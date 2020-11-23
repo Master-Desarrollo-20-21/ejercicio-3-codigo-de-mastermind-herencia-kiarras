@@ -10,7 +10,7 @@ public class SecretCombination extends Combination {
     private String setRandomCombination() {
         Random random = new Random();
         String value = "";
-        for (int i = 0; i < MAXCOLORS; i++) {
+        for (int i = 0; i < MAX_COLORS; i++) {
             int a;
             do {
                 a = random.nextInt(Color.values().length);
@@ -27,11 +27,6 @@ public class SecretCombination extends Combination {
         return false;
     }
 
-    @Override
-    public String show() {
-        return "xxxx";
-    }
-    
 	public int[] isEqual(String proposedCombination) {
         int[] result = new int[2];
         int blacks = 0;
@@ -48,5 +43,10 @@ public class SecretCombination extends Combination {
         result[1]= whites;
         return result;
 	}
+    
+    @Override
+    public String show() {
+        return "xxxx";
+    }
     
 }
