@@ -4,11 +4,13 @@ public class Game {
 
     final int MAX_ATTEMPS = 10;
     final int WINS = 4;
-    private Attempt[] attempts;
+    private ProposedCombination[] proposedCombinations;
     private SecretCombination secretCombination;
+    public int[][] results;
 
     public Game() {
-        attempts = new Attempt[MAX_ATTEMPS];
+        proposedCombinations = new ProposedCombination[MAX_ATTEMPS];
+        results = new int[MAX_ATTEMPS][];
         secretCombination = new SecretCombination();
     }
 
@@ -19,25 +21,29 @@ public class Game {
         do {
             console.out(i + " attempt(s): \n xxxx \n");
             showPreviousAttempts(i);
-            attempts[i] = new Attempt();
-            attempts[i].result = secretCombination.isEqual(attempts[i].getProposedCombination().show());
+            proposedCombinations[i] = new ProposedCombination();
+            results[i] = secretCombination.isEqual(proposedCombinations[i].getProposedCombination().show());
             i++;
-            if(attempts[i-1].result[0] == WINS){
+            if(results[i-1][0] == WINS){
                 break;
             }
-        } while (i < attempts.length);
+        } while (i < proposedCombinations.length);
         console.out(finalResult(i-1));
     }
     
     private void showPreviousAttempts(int previous) {
         Console console = new Console();
         for (int j = 0; j < previous; j++) {
-            console.out(attempts[j].getAttempt());
+            console.out(getAttempt(j));
         }
     }
 
+	public String getAttempt(int j) {
+		return proposedCombinations[j].show() + " --> "+ results[j][0] + " blacks and " + results[j][1] + " whites \n";
+	}
+
     private String finalResult(int i) {
-        if(attempts[i].result[0] == 4) return "You've won!!! ;-) \n";
+        if(results[i][0] == 4) return "You've won!!! ;-) \n";
         return "You've lost!!! :-( \n";
     }
 }

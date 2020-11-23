@@ -7,21 +7,14 @@ Mastermind *--> Game
 class Game{
     ~ MAX_ATTEMPS : int
     - WINS
-    + Attempts : Attempt[]
+    - Result : int[][]
+    + proposedCombinations : ProposedCombination[]
     + play()
     - showPreviousAttempts()
     - finalResult() :String
 }
-Game *--> "0..10" Attempt
 Game *--> SecretCombination
-
-class Attempt{
-    - Result : int[]
-    + getProposedCombination()
-    + getAttempt() : String
-}
-Attempt *--> ProposedCombination
-Attempt --> SecretCombination
+Game *--> "0..10" ProposedCombination
 
 abstract class Combination{
     ~ MAX_COLORS : int
@@ -31,12 +24,12 @@ abstract class Combination{
 }
 Combination *--> "4" Color
 enum Color{
-    RED     ("r")
-    YELLOW  ("y")
-    BLUE    ("b")
-    GREEN   ("g")
-    PURPLE  ("p")
-    ORANGE  ("o")
+    RED     "r"
+    YELLOW  "y"
+    BLUE    "b"
+    GREEN   "g"
+    PURPLE  "p"
+    ORANGE  "o"
     + valueOf(char) : Color
     + valueOf(int) : char
     + getKeyword() : int
@@ -54,6 +47,8 @@ Class ProposedCombination{
     ~ WRONG_COLORS
     - isValid() : String
     - isColorOK(String) : boolean
+    + getProposedCombination()
+    + getAttempt() : String
 }
 
 package IO{
@@ -62,7 +57,6 @@ package IO{
         + out()
     }
 }
-Attempt ...> Console
 Game ...> Console
 Mastermind ...> Console
 ProposedCombination ...> Console

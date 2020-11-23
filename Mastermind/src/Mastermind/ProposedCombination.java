@@ -9,7 +9,6 @@ public class ProposedCombination extends Combination{
         code = isValid();
     }
 
-
     private String isValid() {
         Console console = new Console();
         String value = console.readString(PROPOSE);
@@ -30,6 +29,10 @@ public class ProposedCombination extends Combination{
             }
         return true;
     }
+
+    public ProposedCombination getProposedCombination() {
+		return this;
+	}
 
     @Override
     public String show() {
