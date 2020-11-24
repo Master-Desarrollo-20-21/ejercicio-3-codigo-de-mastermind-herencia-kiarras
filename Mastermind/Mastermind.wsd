@@ -45,7 +45,8 @@ Class ProposedCombination{
     ~ PROPOSE
     ~ WRONG_LENGTH
     ~ WRONG_COLORS
-    - isValid() : String
+    - getValidCombination() : String
+    - inProposedCombination(String) : String
     - isColorOK(String) : boolean
     + getProposedCombination()
     + getAttempt() : String

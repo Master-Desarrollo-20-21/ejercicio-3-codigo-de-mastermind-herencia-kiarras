@@ -1,7 +1,6 @@
 package	Mastermind;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
-import java.util.stream.IntStream;
 
 public class Console
 {
@@ -188,7 +187,7 @@ private static BufferedReader b = new BufferedReader(new InputStreamReader(Syste
 
 public static void main (String args[])
 {
-	GestorIO gestor = new GestorIO();
+	Console gestor = new Console();
 	
 	System.out.println("ENTERO");
 	gestor.out(gestor.inInt());
@@ -201,19 +200,5 @@ public static void main (String args[])
 	System.out.println();
 	System.out.println("BOOLEAN");
 	gestor.out(gestor.inBoolean());
-}
-
-public boolean readStringOK(String salida) {
-	out(salida);
-	String entrada = inString();
-	if(entrada != null && entrada.equals("y")) {
-		return true;
-	}
-	return false;
-}
-
-public String readString(String salida) {
-	out(salida);
-	return inString();
 }
 }
