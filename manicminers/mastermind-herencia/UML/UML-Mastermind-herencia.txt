@@ -1,0 +1,80 @@
+@startuml mastermind
+class Mastermind [[java:mastermind.Mastermind]] {
+	+Mastermind()
+	-play()
+	+{static}main(String[] args)
+}
+class Game [[java:mastermind.Game]] {
+}
+Mastermind --> "1" Game
+class Game [[java:mastermind.Game]] {
+	~int MAX_ATTEMPS
+	~int attempsCounter
+	~Game()
+	+start()
+	+play()
+	-boolean isEndOfGame()
+	-Result getLastResult()
+	+boolean resume()
+	+String toString()
+}
+class Console [[java:game.ui.Console]] {
+}
+Game ..> "1" Console
+class Combination [[java:mastermind.Combination]] {
+}
+Game *-down-> "1" Combination : secretCombination
+class Result [[java:game.Result]] {
+}
+Game o-down-> "0..10" Result : results
+class Result [[java:mastermind.Result]] {
+	~int whites
+	~int blacks
+	+Result(Combination proposedCombination, Combination secretCombination)
+	#check()
+	+boolean isWinner()
+	+String toString()
+}
+class Combination [[java:mastermind.Combination]] {
+}
+Result *--> "1" Combination : proposedCombination
+class Combination [[java:mastermind.Combination]] {
+}
+Result *--> "1" Combination : secretCombination
+class Console [[java:mastermind.Console]] {
+	-{static}BufferedReader reader
+	+out(String salida)
+	+String in(String mensaje)
+}
+enum Colour [[java:mastermind.Colour]] {
+	RED
+	BLUE
+	YELLOW
+	GREEN
+	ORANGE
+	PINK
+	colour
+	~Colour(String colour)
+	+{static}boolean isValid(String colour)
+	+{static}String validColours()
+	+String toString()
+}
+class Combination [[java:mastermind.Combination]] {
+	#{static}int LENGHT
+	#String[] colors
+	+Combination()
+	+String[] getColors()
+	+boolean isValid()
+	+boolean isValidLength()
+	+boolean isValidColors()
+	+String getValidColours()
+	+int length()
+	+readValue()
+	+setValue(String colors)
+	+String getValue()
+	+setRandomValue()
+}
+class Console [[java:game.ui.Console]] {
+}
+Combination ..> "1" Console
+@enduml
